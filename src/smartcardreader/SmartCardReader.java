@@ -29,7 +29,9 @@ public class SmartCardReader {
 
                 CardChannel channel = card.getBasicChannel();
 
-                if (args[0].equals("/calibrations")) {
+                if (args == null || args.length != 1) {
+                    GetLatestCalibrationRecord(channel);
+                } else if (args[0].equals("/calibrations")) {
                     ReadAllCalibrationRecords(channel);
                 } else if (args[0].equals("/dump")) {
                     byte[] dump = new CardDump().generateWorkshopCardDump(channel);
