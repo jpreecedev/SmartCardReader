@@ -125,7 +125,7 @@ public class SmartCardReader {
         sb.append("C_");
         sb.append(date);
         sb.append("_");
-        sb.append(workshopCardId.getWorkshopName());
+        sb.append(workshopCardId.getWorkshopName().replaceAll("/", ""));
         sb.append("_");
         sb.append(workshopCardId.getWorkshopCardSerialNumber());
         sb.append(".DDD");
