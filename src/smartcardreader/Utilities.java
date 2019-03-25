@@ -29,11 +29,20 @@ public class Utilities {
     }
 
     public static boolean selectApplication(CardChannel channel) throws CardException {
-        byte[] arrayOfByte = {-1, 84, 65, 67, 72, 79};
-        CommandAPDU localCommandAPDU = new CommandAPDU(0, -92, 4, 12, arrayOfByte);
+        byte[] arrayOfByte = {-1, 'T', 'A', 'C', 'H', 'O'};
+        //CommandAPDU localCommandAPDU = new CommandAPDU(0, -92, 4, 12, arrayOfByte);
+        CommandAPDU localCommandAPDU = new CommandAPDU(0x00, 0xA4, 0x04, 0x0C, arrayOfByte);
 
         ResponseAPDU localResponseAPDU = channel.transmit(localCommandAPDU);
-        return localResponseAPDU.getSW() == 36864;
+        return localResponseAPDU.getSW() == 0x9000;
+    }
+    
+    public static boolean selectGen2(CardChannel channel) throws CardException {
+        byte[] arrayOfByte = {-1, 'S', 'M', 'R', 'D', 'T'};
+        CommandAPDU localCommandAPDU = new CommandAPDU(0x00, 0xA4, 0x04, 0x0C, arrayOfByte);
+
+        ResponseAPDU localResponseAPDU = channel.transmit(localCommandAPDU);
+        return localResponseAPDU.getSW() == 0x9000;
     }
 
     public static boolean selectFile(int paramInt, CardChannel channel) throws CardException {
